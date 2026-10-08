@@ -39,7 +39,7 @@ orientation = 1
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gflxx"]
 render_priority = 0
 shader = ExtResource("11_gflxx")
-shader_parameter/shadow_color = Color(0, 0, 0, 0.3137255)
+shader_parameter/shadow_color = Color(0, 0, 0, 0.3)
 shader_parameter/fade = 2.0
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_cqc3e"]
