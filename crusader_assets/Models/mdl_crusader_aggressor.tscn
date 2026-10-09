@@ -1,41 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://dip5fg03f4bvg"]
+[gd_scene load_steps=17 format=3 uid="uid://dip5fg03f4bvg"]
 
 [ext_resource type="PackedScene" uid="uid://c1ggontn7ks4i" path="res://crusader_assets/Models/mdl_crusader_aggressor.fbx" id="1_5atvx"]
-[ext_resource type="Material" uid="uid://co2vvc3uojlyq" path="res://crusader_assets/Material/BLADE_FLAME_PARTICLE_MAT.tres" id="2_wpegv"]
-[ext_resource type="Texture2D" uid="uid://ciqdyq6b5dbgd" path="res://crusader_assets/Texture/OtherSkin/tex_crusader_pal_aggressor_col.png" id="2_xp87y"]
+[ext_resource type="Material" uid="uid://co2vvc3uojlyq" path="res://crusader_assets/Material/Particle/blade_flame_particle_mat.tres" id="2_wpegv"]
+[ext_resource type="Material" uid="uid://duagsnypnxcah" path="res://crusader_assets/Material/OtherSkin/char_aggressor_mat.tres" id="2_xt8v5"]
 [ext_resource type="Material" uid="uid://bil83oc5ocyro" path="res://crusader_assets/Particles/blade_flame_left_particle_material.tres" id="3_843ex"]
+[ext_resource type="Material" uid="uid://c8o2hf7ue3wqx" path="res://crusader_assets/Material/OtherSkin/wpn_pouches_aggressor_mat.tres" id="4_buqk1"]
 [ext_resource type="Material" uid="uid://c8hrkatxjfuwv" path="res://crusader_assets/Particles/blade_flame_right_particle_material.tres" id="4_taxpd"]
-[ext_resource type="Texture2D" uid="uid://bs8p2ni1jyys5" path="res://crusader_assets/Texture/tex_crusader_ink.png" id="4_w1oy2"]
 [ext_resource type="Material" uid="uid://3ja8f8g5awta" path="res://crusader_assets/Material/OtherSkin/burn_banner_aggressor_mat.tres" id="5_f6nxo"]
-[ext_resource type="Texture2D" uid="uid://dn8ydgktxn0o4" path="res://crusader_assets/Texture/OtherSkin/tex_crusader_wpn_pouches_aggressor_col.png" id="5_px2ji"]
 [ext_resource type="Shader" uid="uid://cwds61vg57l6r" path="res://crusader_assets/Shader/blade_glow_shader.gdshader" id="5_tmd8s"]
-[ext_resource type="Texture2D" uid="uid://cvqu7hc7wqgx1" path="res://crusader_assets/Texture/OtherSkin/tex_crusader_wpn_pouches_aggressor_ink.png" id="6_f6nxo"]
-[ext_resource type="Material" uid="uid://oa5iw1usm8l5" path="res://crusader_assets/Material/BURN_SCRIPTURE_MAT.tres" id="7_f6nxo"]
-[ext_resource type="Texture2D" uid="uid://d0keyveqtaa0n" path="res://crusader_assets/Texture/OtherSkin/tex_crusader_wpn_sword_aggressor_col.png" id="9_hs532"]
-[ext_resource type="Material" uid="uid://vq6jotwtska0" path="res://crusader_assets/Shader/ShadowLine.tres" id="10_xp87y"]
-[ext_resource type="Texture2D" uid="uid://c86lqaxesaooa" path="res://crusader_assets/Texture/OtherSkin/tex_crusader_wpn_sword_aggressor_ink.png" id="11_w1oy2"]
+[ext_resource type="Material" uid="uid://c4vuqoeahhba5" path="res://crusader_assets/Material/OtherSkin/wpn_sword_aggressor_mat.tres" id="6_3b4nr"]
+[ext_resource type="Material" uid="uid://oa5iw1usm8l5" path="res://crusader_assets/Material/burn_scripture_mat.tres" id="7_f6nxo"]
 [ext_resource type="Shader" uid="uid://2uxcgot7aa0" path="res://crusader_assets/Shader/crusader_shadow_shader.gdshader" id="15_xpowh"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_px2ji"]
-next_pass = ExtResource("10_xp87y")
-albedo_color = Color(1.1638972, 1.1638972, 1.1638972, 1)
-albedo_texture = ExtResource("2_xp87y")
-rim_enabled = true
-rim_texture = ExtResource("4_w1oy2")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m1uxg"]
-next_pass = ExtResource("10_xp87y")
-albedo_color = Color(1.1638972, 1.1638972, 1.1638972, 1)
-albedo_texture = ExtResource("5_px2ji")
-rim_enabled = true
-rim_texture = ExtResource("6_f6nxo")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w1oy2"]
-next_pass = ExtResource("10_xp87y")
-albedo_color = Color(1.1638972, 1.1638972, 1.1638972, 1)
-albedo_texture = ExtResource("9_hs532")
-rim_enabled = true
-rim_texture = ExtResource("11_w1oy2")
 
 [sub_resource type="QuadMesh" id="QuadMesh_xp87y"]
 size = Vector2(1, 0.75)
@@ -409,19 +384,19 @@ bone_idx = 0
 bone_idx = 0
 
 [node name="msh_crusader" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D" index="39"]
-surface_material_override/0 = SubResource("StandardMaterial3D_px2ji")
+surface_material_override/0 = ExtResource("2_xt8v5")
 
 [node name="msh_crusader_wpn_banner" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D" index="40"]
 surface_material_override/0 = ExtResource("5_f6nxo")
 
 [node name="msh_crusader_wpn_pouches" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D" index="41"]
-surface_material_override/0 = SubResource("StandardMaterial3D_m1uxg")
+surface_material_override/0 = ExtResource("4_buqk1")
 
 [node name="msh_crusader_wpn_scripture" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D" index="42"]
 surface_material_override/0 = ExtResource("7_f6nxo")
 
 [node name="msh_crusader_wpn_sword" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D" index="43"]
-surface_material_override/0 = SubResource("StandardMaterial3D_w1oy2")
+surface_material_override/0 = ExtResource("6_3b4nr")
 
 [node name="BladeAttachment" type="BoneAttachment3D" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D" index="44"]
 transform = Transform3D(-0.03250438, 0.9487429, -0.31437314, -0.19199426, 0.30275428, 0.93353, 0.98085785, 0.090701684, 0.17231244, -0.25120682, 1.4482028, 0.6963286)

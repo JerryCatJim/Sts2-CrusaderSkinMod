@@ -1,18 +1,18 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://oa5iw1usm8l5"]
 
-[ext_resource type="Shader" uid="uid://b4tu7rjiandus" path="res://crusader_assets/Shader/burn_scripture_down_to_up_shader.gdshader" id="2_32q8u"]
-[ext_resource type="Texture2D" uid="uid://cj5k8aq3qerue" path="res://crusader_assets/Texture/tex_crusader_wpn_scripture_col.png" id="2_h1frh"]
-[ext_resource type="Texture2D" uid="uid://qxgayfsfo8kr" path="res://crusader_assets/Shader/burn_scripture_texture_1d.tres" id="3_6kl0j"]
-[ext_resource type="Texture2D" uid="uid://bfg8r02iq6w5v" path="res://crusader_assets/Shader/burn_noise_texture_2d.tres" id="3_32q8u"]
-[ext_resource type="Texture2D" uid="uid://bjsitlt3dikhs" path="res://crusader_assets/Texture/tex_crusader_wpn_scripture_ink.png" id="4_6kl0j"]
+[ext_resource type="Shader" uid="uid://b4tu7rjiandus" path="res://crusader_assets/Shader/burn_scripture_down_to_up_shader.gdshader" id="1_os322"]
+[ext_resource type="Texture2D" uid="uid://qxgayfsfo8kr" path="res://crusader_assets/Shader/burn_scripture_texture_1d.tres" id="2_wrymg"]
+[ext_resource type="Texture2D" uid="uid://cj5k8aq3qerue" path="res://crusader_assets/Texture/tex_crusader_wpn_scripture_col.png" id="3_ni4rn"]
+[ext_resource type="Texture2D" uid="uid://bjsitlt3dikhs" path="res://crusader_assets/Texture/tex_crusader_wpn_scripture_ink.png" id="4_2fict"]
+[ext_resource type="Texture2D" uid="uid://bfg8r02iq6w5v" path="res://crusader_assets/Shader/burn_noise_texture_2d.tres" id="5_xo26o"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("2_32q8u")
-shader_parameter/col_texture = ExtResource("2_h1frh")
-shader_parameter/ink_texture = ExtResource("4_6kl0j")
-shader_parameter/noise_texture = ExtResource("3_32q8u")
-shader_parameter/burn_texture = ExtResource("3_6kl0j")
+shader = ExtResource("1_os322")
+shader_parameter/col_texture = ExtResource("3_ni4rn")
+shader_parameter/ink_texture = ExtResource("4_2fict")
+shader_parameter/noise_texture = ExtResource("5_xo26o")
+shader_parameter/burn_texture = ExtResource("2_wrymg")
 shader_parameter/rim_amount = 1.0
 shader_parameter/rim_tint_value = 0.0
 shader_parameter/dissolve_value = 0.0

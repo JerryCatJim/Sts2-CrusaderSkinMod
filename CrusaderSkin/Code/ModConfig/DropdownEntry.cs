@@ -14,7 +14,7 @@ public struct DropdownEntry
 
     public string label { get; set; } = null;
 
-    public string defaultValue { get; set; } = "Original";
+    public string defaultValue { get; set; } = "Default";
 
     public string selected { get; set; } = null;  //当前选中的
 

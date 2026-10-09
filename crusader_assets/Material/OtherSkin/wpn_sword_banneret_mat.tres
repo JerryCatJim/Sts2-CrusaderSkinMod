@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://bwg5o2agvsppc"]
+
+[ext_resource type="Texture2D" uid="uid://dyede3j4t8kls" path="res://crusader_assets/Texture/OtherSkin/tex_crusader_wpn_sword_banneret_col.png" id="1_wjnfw"]
+[ext_resource type="Material" uid="uid://vq6jotwtska0" path="res://crusader_assets/Shader/ShadowLine.tres" id="2_aaxfk"]
+[ext_resource type="Texture2D" uid="uid://dqio8aogor531" path="res://crusader_assets/Texture/OtherSkin/tex_crusader_wpn_sword_banneret_ink.png" id="3_aaxfk"]
+
+[resource]
+next_pass = ExtResource("2_aaxfk")
+albedo_color = Color(1.1638972, 1.1638972, 1.1638972, 1)
+albedo_texture = ExtResource("1_wjnfw")
+rim_enabled = true
+rim_texture = ExtResource("3_aaxfk")

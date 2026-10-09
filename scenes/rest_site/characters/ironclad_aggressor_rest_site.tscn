@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dy6et1458tlpv"]
 
 [ext_resource type="Script" uid="uid://br868w5ykpmw4" path="res://CrusaderSkin/Code/Nodes/EmptyNRestSiteCharacter.cs" id="1_rhhed"]
-[ext_resource type="AnimationLibrary" uid="uid://bj8ros5grvlxa" path="res://crusader_assets/crusader_restsite_animlib.tres" id="2_jemrr"]
+[ext_resource type="AnimationLibrary" uid="uid://bj8ros5grvlxa" path="res://crusader_assets/AnimationTree/crusader_restsite_animlib.tres" id="2_jemrr"]
 [ext_resource type="PackedScene" uid="uid://cftw6csox0fhd" path="res://scenes/rest_site/characters/selection_reticle.tscn" id="3_dx3nd"]
 [ext_resource type="PackedScene" uid="uid://dip5fg03f4bvg" path="res://crusader_assets/Models/mdl_crusader_aggressor.tscn" id="4_rhhed"]
 

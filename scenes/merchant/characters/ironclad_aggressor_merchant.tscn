@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bd74whilgl2ad"]
 
 [ext_resource type="Script" uid="uid://cpybwtmt2tka5" path="res://CrusaderSkin/Code/Nodes/EmptyNMerchantCharacter.cs" id="1_7e161"]
-[ext_resource type="AnimationLibrary" uid="uid://cr4xtqncoye66" path="res://crusader_assets/crusader_merchant_animlib.tres" id="2_blpii"]
+[ext_resource type="AnimationLibrary" uid="uid://cr4xtqncoye66" path="res://crusader_assets/AnimationTree/crusader_merchant_animlib.tres" id="2_blpii"]
 [ext_resource type="PackedScene" uid="uid://dip5fg03f4bvg" path="res://crusader_assets/Models/mdl_crusader_aggressor.tscn" id="3_7e161"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_if4m5"]

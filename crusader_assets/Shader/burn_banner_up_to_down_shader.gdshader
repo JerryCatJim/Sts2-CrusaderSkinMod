@@ -50,8 +50,11 @@ void fragment() {
     vec4 burn = texture(burn_texture, burn_uv);
     // 基础色：未烧区显示原色，燃烧带显示渐变
     ALBEDO = mix(col_sample.rgb, burn.rgb, burn_mask);
-    // 关键：ALPHA 用 burn_band，燃烧带保持不透明
-    ALPHA  = col_sample.a * burn_band;
+    // 关键：不要给ALPHA赋值，让godot对材质正确层级排序
+    float alpha_mask = col_sample.a * burn_band;
+    if (alpha_mask < 0.5) {
+        discard;
+    }
     // 内置 Rim
     RIM      = rim_amount * ink_sample.r * keep;
     RIM_TINT = rim_tint_value;

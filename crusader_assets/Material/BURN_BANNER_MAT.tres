@@ -1,18 +1,18 @@
 [gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://dfv2vjskaebuq"]
 
-[ext_resource type="Shader" uid="uid://ber4508pp8ntr" path="res://crusader_assets/Shader/burn_banner_up_to_down_shader.gdshader" id="1_rfl75"]
-[ext_resource type="Texture2D" uid="uid://civ6koaiigcrw" path="res://crusader_assets/Shader/burn_banner_texture_1d.tres" id="2_rfl75"]
-[ext_resource type="Texture2D" uid="uid://ceh2182n1obyg" path="res://crusader_assets/Texture/tex_crusader_wpn_banner_col.png" id="3_esxep"]
-[ext_resource type="Texture2D" uid="uid://c4u0rk5k1dmck" path="res://crusader_assets/Texture/tex_crusader_wpn_banner_ink.png" id="4_3oap5"]
-[ext_resource type="Texture2D" uid="uid://bfg8r02iq6w5v" path="res://crusader_assets/Shader/burn_noise_texture_2d.tres" id="5_wg7rn"]
+[ext_resource type="Shader" uid="uid://ber4508pp8ntr" path="res://crusader_assets/Shader/burn_banner_up_to_down_shader.gdshader" id="1_sxsxi"]
+[ext_resource type="Texture2D" uid="uid://civ6koaiigcrw" path="res://crusader_assets/Shader/burn_banner_texture_1d.tres" id="2_ctsbx"]
+[ext_resource type="Texture2D" uid="uid://ceh2182n1obyg" path="res://crusader_assets/Texture/tex_crusader_wpn_banner_col.png" id="3_vfx1f"]
+[ext_resource type="Texture2D" uid="uid://c4u0rk5k1dmck" path="res://crusader_assets/Texture/tex_crusader_wpn_banner_ink.png" id="4_13ale"]
+[ext_resource type="Texture2D" uid="uid://bfg8r02iq6w5v" path="res://crusader_assets/Shader/burn_noise_texture_2d.tres" id="5_wj6ma"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_rfl75")
-shader_parameter/col_texture = ExtResource("3_esxep")
-shader_parameter/ink_texture = ExtResource("4_3oap5")
-shader_parameter/noise_texture = ExtResource("5_wg7rn")
-shader_parameter/burn_texture = ExtResource("2_rfl75")
+shader = ExtResource("1_sxsxi")
+shader_parameter/col_texture = ExtResource("3_vfx1f")
+shader_parameter/ink_texture = ExtResource("4_13ale")
+shader_parameter/noise_texture = ExtResource("5_wj6ma")
+shader_parameter/burn_texture = ExtResource("2_ctsbx")
 shader_parameter/rim_amount = 1.0
 shader_parameter/rim_tint_value = 0.0
 shader_parameter/dissolve_value = 0.0

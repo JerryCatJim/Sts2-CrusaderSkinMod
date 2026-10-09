@@ -11,10 +11,17 @@ public static class TscnPathGetter
     {
         return CrusaderSettings.CurrentSkin switch
         {
-            "初始皮肤" => "",
-            "Initial" => "",
+            //与RitsuLibModConfig.cs里的dropdown0写的options对应
+            "默认皮肤" => "",
+            "Default" => "",
             "侵略者" => "_aggressor",
             "Aggressor" => "_aggressor",
+            "方旗骑士" => "_banneret",
+            "Banneret" => "_banneret",
+            "圣殿骑士" => "_templar",
+            "Templar" => "_templar",
+            "渊狱" => "_infernal",
+            "Infernal" => "_infernal",
             _ => ""
         };
     }

@@ -24,7 +24,7 @@ public static class RitsuLibModConfig
         ["UseLowHealthIdle"] = true,
 		["SwitchBannerImmediately"] = false,
 		["ShowTeammateCardSelectAnim"] = true,
-        ["CurrentSkin"] = "Initial"  //注意，dropdown的selected返回的居然是options的label(value)而不是value(key)
+        ["CurrentSkin"] = "Default"  //注意，dropdown的selected返回的居然是options的label(value)而不是value(key)
     };
 
 	private static string DataDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SlayTheSpire2", ModId);
@@ -60,8 +60,11 @@ public static class RitsuLibModConfig
         dropdown0.label = SimpleLocUtil.Simple("十字军皮肤类型", "Crusader Skin Type");
         dropdown0.options = new Dictionary<string, string> {
 			//"value" , "label"
-			{"Initial", SimpleLocUtil.Simple("初始皮肤", "Initial")},
-            {"Aggressor", SimpleLocUtil.Simple("侵略者", "Aggressor")}
+			{"Initial", SimpleLocUtil.Simple("默认皮肤", "Default")},
+            {"Aggressor", SimpleLocUtil.Simple("侵略者", "Aggressor")},
+            {"Banneret", SimpleLocUtil.Simple("方旗骑士", "Banneret")},
+            {"Templar", SimpleLocUtil.Simple("圣殿骑士", "Templar")},
+            {"Infernal", SimpleLocUtil.Simple("渊狱", "Infernal")}
         };
         skinChangeSec.entries.Add(dropdown0);
 
