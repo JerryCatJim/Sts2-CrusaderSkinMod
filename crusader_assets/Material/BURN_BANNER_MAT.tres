@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://dfv2vjskaebuq"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://b6ynl1gii52nd"]
 
 [ext_resource type="Shader" uid="uid://ber4508pp8ntr" path="res://crusader_assets/Shader/burn_banner_up_to_down_shader.gdshader" id="1_sxsxi"]
 [ext_resource type="Texture2D" uid="uid://civ6koaiigcrw" path="res://crusader_assets/Shader/burn_banner_texture_1d.tres" id="2_ctsbx"]

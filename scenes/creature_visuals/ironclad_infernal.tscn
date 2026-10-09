@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8ipy01rvv1tq" path="res://CrusaderSkin/Code/Nodes/EmptyNCreatureVisuals.cs" id="1_maj06"]
 [ext_resource type="PackedScene" uid="uid://cl0aqrgf1h7qm" path="res://crusader_assets/Models/mdl_crusader_infernal.tscn" id="2_maj06"]
-[ext_resource type="AnimationLibrary" uid="uid://bhf8rmbmo7maf" path="res://crusader_assets/AnimationTree/crusader_combat_animlib.tres" id="3_3lbvb"]
+[ext_resource type="AnimationLibrary" uid="uid://dvsamwcsvrl3w" path="res://crusader_assets/AnimationTree/crusader_combat_animlib_shrink.tres" id="3_maj06"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://ddi40dtdjpt10" path="res://crusader_assets/AnimationTree/crusader_state_machine.tres" id="4_dhml8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_if4m5"]
@@ -91,7 +91,7 @@ position = Vector2(0, -300)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Visuals/SubViewportContainer/SubViewport/mdl_crusader")
 libraries = {
-&"": ExtResource("3_3lbvb")
+&"": ExtResource("3_maj06")
 }
 autoplay = "crusader_idlepose"
 
