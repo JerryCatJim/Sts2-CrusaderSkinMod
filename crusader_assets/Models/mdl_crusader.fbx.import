@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b7adhhqafrx2a"
-path="res://.godot/imported/mdl_crusader.fbx-86bc1c3478e6538c988a17013ab1c2c9.scn"
+path="res://.godot/imported/mdl_crusader.fbx-99b8b1e45929cbbb1ddcaebccb234d9a.scn"
 
 [deps]
 
-source_file="res://crusader_assets/mdl_crusader.fbx"
-dest_files=["res://.godot/imported/mdl_crusader.fbx-86bc1c3478e6538c988a17013ab1c2c9.scn"]
+source_file="res://crusader_assets/Models/mdl_crusader.fbx"
+dest_files=["res://.godot/imported/mdl_crusader.fbx-99b8b1e45929cbbb1ddcaebccb234d9a.scn"]
 
 [params]
 
@@ -12407,6 +12407,11 @@ _subresources={
 "save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://crusader_assets/Mesh/msh_crusader_wpn_sword.res",
 "save_to_file/path": "uid://6rl2g2futqwf"
+}
+},
+"nodes": {
+"PATH:AnimationPlayer": {
+"import/skip_import": true
 }
 }
 }

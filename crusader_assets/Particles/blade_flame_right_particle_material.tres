@@ -9,8 +9,9 @@ point_count = 2
 curve = SubResource("Curve_f4v6y")
 
 [resource]
+emission_shape_offset = Vector3(0, 0, -0.05)
 emission_shape = 3
-emission_box_extents = Vector3(0, 0, 0.35)
+emission_box_extents = Vector3(0, 0, 0.45)
 angle_min = -179.99998
 angle_max = 180.00002
 direction = Vector3(-1, 0, -1)

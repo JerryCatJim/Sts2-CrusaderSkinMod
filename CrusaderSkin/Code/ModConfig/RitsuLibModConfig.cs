@@ -23,8 +23,9 @@ public static class RitsuLibModConfig
         ["PlayCardVfx"] = true,
         ["UseLowHealthIdle"] = true,
 		["SwitchBannerImmediately"] = false,
-		["ShowTeammateCardSelectAnim"] = true
-	};
+		["ShowTeammateCardSelectAnim"] = true,
+        ["CurrentSkin"] = "Initial"  //注意，dropdown的selected返回的居然是options的label(value)而不是value(key)
+    };
 
 	private static string DataDir => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "SlayTheSpire2", ModId);
 
@@ -49,7 +50,22 @@ public static class RitsuLibModConfig
         mainPage.title = SimpleLocUtil.Simple("主要设置", "Main");
         mainPage.description = SimpleLocUtil.Simple("主要设置", "Main");
         mainPage.sortOrder = 1;
-		RLMCSection cardSfxSec = new RLMCSection();
+
+        RLMCSection skinChangeSec = new RLMCSection();
+        skinChangeSec.id = "skin_change";
+        skinChangeSec.title = SimpleLocUtil.Simple("切换十字军皮肤", "Change Crusader Skin");
+        DropdownEntry dropdown0 = new DropdownEntry();
+        dropdown0.id = "CurrentSkin";
+        dropdown0.key = dropdown0.id;
+        dropdown0.label = SimpleLocUtil.Simple("十字军皮肤类型", "Crusader Skin Type");
+        dropdown0.options = new Dictionary<string, string> {
+			//"value" , "label"
+			{"Initial", SimpleLocUtil.Simple("初始皮肤", "Initial")},
+            {"Aggressor", SimpleLocUtil.Simple("侵略者", "Aggressor")}
+        };
+        skinChangeSec.entries.Add(dropdown0);
+
+        RLMCSection cardSfxSec = new RLMCSection();
         cardSfxSec.id = "card_sfx";
         cardSfxSec.title = SimpleLocUtil.Simple("卡牌音效", "Card Sfx");
         SliderEntry sliderEntry = new SliderEntry();
@@ -67,6 +83,7 @@ public static class RitsuLibModConfig
         toggle0.label = SimpleLocUtil.Simple("播放卡牌音效", "Play Card Sfx");
         toggle0.description = SimpleLocUtil.Simple("关闭后会恢复至原版游戏默认攻击音效", "If unchecked, attack cards will use the original SFX.");
         cardSfxSec.entries.Add(toggle0);
+
         RLMCSection cardVfxSec = new RLMCSection();
         cardVfxSec.id = "card_vfx";
         cardVfxSec.title = SimpleLocUtil.Simple("卡牌动画和特效", "Card Anim And Vfx");
@@ -82,6 +99,7 @@ public static class RitsuLibModConfig
         toggle2.label = SimpleLocUtil.Simple("播放卡牌特效", "Play Card Vfx");
         toggle2.description = SimpleLocUtil.Simple("关闭后会无法播放卡牌的打出特效", "If unchecked, card play VFX wil not play.");
         cardVfxSec.entries.Add(toggle2);
+
         RLMCSection animSec = new RLMCSection();
         animSec.id = "character_anim";
         animSec.title = SimpleLocUtil.Simple("角色动画", "Character Anim");
@@ -103,6 +121,8 @@ public static class RitsuLibModConfig
         toggle5.label = SimpleLocUtil.Simple("展示队友十字军的选卡动画", "Show Teammate Crusader Card Select Anim");
         toggle5.description = SimpleLocUtil.Simple("关闭后不会播放队友十字军的选卡动画", "If unchecked, teammate Crusader card select anims will not play.");
         animSec.entries.Add(toggle5);
+
+        mainPage.sections.Add(skinChangeSec);
         mainPage.sections.Add(cardSfxSec);
         mainPage.sections.Add(cardVfxSec);
         mainPage.sections.Add(animSec);

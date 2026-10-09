@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://btkltig43hm46"]
 
-[ext_resource type="PackedScene" uid="uid://b7adhhqafrx2a" path="res://crusader_assets/mdl_crusader.fbx" id="1_vgc3n"]
+[ext_resource type="PackedScene" uid="uid://b7adhhqafrx2a" path="res://crusader_assets/Models/mdl_crusader.fbx" id="1_vgc3n"]
 [ext_resource type="Material" uid="uid://def3qh1aevc60" path="res://crusader_assets/Material/CHAR_MAT.tres" id="2_034uv"]
 [ext_resource type="Material" uid="uid://dfv2vjskaebuq" path="res://crusader_assets/Material/BURN_BANNER_MAT.tres" id="3_yc230"]
 [ext_resource type="Material" uid="uid://41b0p8qkvic5" path="res://crusader_assets/Material/WPN_POUCHES_MAT.tres" id="4_g4tjm"]
@@ -15,7 +15,7 @@
 [sub_resource type="QuadMesh" id="QuadMesh_bgr0p"]
 size = Vector2(1, 0.75)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqc3e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_84ox0"]
 render_priority = 0
 shader = ExtResource("6_cqc3e")
 shader_parameter/global_intensity = 1.0
@@ -32,7 +32,7 @@ shader_parameter/alpha_cutoff = 0.30000001425
 shader_parameter/alpha_gain = 3.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_kb7ml"]
-material = SubResource("ShaderMaterial_cqc3e")
+material = SubResource("ShaderMaterial_84ox0")
 size = Vector2(0.2, 1)
 orientation = 1
 
@@ -273,6 +273,7 @@ bone_idx = 104
 [node name="BladeFlameLeft" type="GPUParticles3D" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D/BladeAttachment" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.1, 0.7)
 material_override = ExtResource("7_pwowq")
+emitting = false
 amount = 15
 lifetime = 0.3
 process_material = ExtResource("8_kb7ml")
@@ -281,6 +282,7 @@ draw_pass_1 = SubResource("QuadMesh_bgr0p")
 [node name="BladeFlameRight" type="GPUParticles3D" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D/BladeAttachment" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, 0.1, 0.7)
 material_override = ExtResource("7_pwowq")
+emitting = false
 amount = 15
 lifetime = 0.3
 process_material = ExtResource("7_bgr0p")
@@ -288,9 +290,10 @@ draw_pass_1 = SubResource("QuadMesh_bgr0p")
 
 [node name="BladeGlowBody" type="MeshInstance3D" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D/BladeAttachment" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.7)
+visible = false
 mesh = SubResource("QuadMesh_kb7ml")
 
-[node name="ShadowNode" type="MeshInstance3D" parent="." index="2"]
+[node name="ShadowNode" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.01, -0.06)
 material_override = SubResource("ShaderMaterial_gflxx")
 mesh = SubResource("CylinderMesh_cqc3e")

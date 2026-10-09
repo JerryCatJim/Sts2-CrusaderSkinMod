@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cpybwtmt2tka5" path="res://CrusaderSkin/Code/Nodes/EmptyNMerchantCharacter.cs" id="1_j0a6u"]
 [ext_resource type="AnimationLibrary" uid="uid://cr4xtqncoye66" path="res://crusader_assets/crusader_merchant_animlib.tres" id="2_j0a6u"]
-[ext_resource type="PackedScene" uid="uid://btkltig43hm46" path="res://crusader_assets/mdl_crusader.tscn" id="3_84xss"]
+[ext_resource type="PackedScene" uid="uid://btkltig43hm46" path="res://crusader_assets/Models/mdl_crusader.tscn" id="3_84xss"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_if4m5"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)

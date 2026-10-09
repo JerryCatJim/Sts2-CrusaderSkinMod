@@ -16,8 +16,8 @@ uniform float burn_intensity : hint_range(0.0, 20.0) = 5.0;
 // 金色整体发光（径向衰减）
 uniform vec4  glow_color        : source_color = vec4(1.0, 0.85, 0.25, 1.0);
 uniform float brightness        : hint_range(0.0, 20.0) = 1.0;
-uniform float brightness_radius : hint_range(0.1, 2.0) = 1.0;
-uniform vec3  glow_center       = vec3(0.0, 2.2, 1.4);
+uniform float brightness_radius : hint_range(0.0, 2.0) = 0.0;  //0.4大小差不多，但我现在不想要亮光了，改为0屏蔽
+uniform vec3  glow_center       = vec3(0.03, 0.0, 0.7);
 //单向燃烧相关
 uniform vec3  burn_axis   = vec3(0.0, -1.0, 0.0);  // 燃烧推进的方向（按你模型的长轴填）
 uniform float model_length = 2.0;                 // 沿该轴的实际长度

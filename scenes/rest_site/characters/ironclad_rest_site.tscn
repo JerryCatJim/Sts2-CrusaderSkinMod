@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cu8830pbdj284"]
 
 [ext_resource type="Script" uid="uid://br868w5ykpmw4" path="res://CrusaderSkin/Code/Nodes/EmptyNRestSiteCharacter.cs" id="1_r7lhj"]
-[ext_resource type="PackedScene" uid="uid://btkltig43hm46" path="res://crusader_assets/mdl_crusader.tscn" id="2_dnqdo"]
+[ext_resource type="PackedScene" uid="uid://btkltig43hm46" path="res://crusader_assets/Models/mdl_crusader.tscn" id="2_dnqdo"]
 [ext_resource type="AnimationLibrary" uid="uid://bj8ros5grvlxa" path="res://crusader_assets/crusader_restsite_animlib.tres" id="3_16bta"]
 [ext_resource type="PackedScene" uid="uid://cftw6csox0fhd" path="res://scenes/rest_site/characters/selection_reticle.tscn" id="4_r7lhj"]
 
@@ -221,7 +221,7 @@ emitting = false
 [node name="BladeGlowBody" parent="ControlRoot/Visuals/SubViewportContainer/SubViewport/mdl_crusader/mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D/BladeAttachment" index="2"]
 visible = false
 
-[node name="ShadowNode" parent="ControlRoot/Visuals/SubViewportContainer/SubViewport/mdl_crusader" index="2"]
+[node name="ShadowNode" parent="ControlRoot/Visuals/SubViewportContainer/SubViewport/mdl_crusader" index="1"]
 visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="ControlRoot/Visuals/SubViewportContainer/SubViewport"]
