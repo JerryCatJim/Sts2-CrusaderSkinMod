@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://dxaay0154lasd" path="res://crusader_assets/Material/OtherSkin/wpn_pouches_infernal_mat.tres" id="4_ernid"]
 [ext_resource type="Material" uid="uid://oa5iw1usm8l5" path="res://crusader_assets/Material/burn_scripture_mat.tres" id="5_yd4tn"]
 [ext_resource type="Material" uid="uid://r623rerdivb7" path="res://crusader_assets/Material/OtherSkin/wpn_sword_infernal_mat.tres" id="6_u4xpo"]
-[ext_resource type="Material" uid="uid://co2vvc3uojlyq" path="res://crusader_assets/Material/Particle/blade_flame_particle_mat.tres" id="7_74gaq"]
+[ext_resource type="Material" uid="uid://dns60xrvaoith" path="res://crusader_assets/Material/Particle/blade_flame_blue_particle_mat.tres" id="7_ht3se"]
 [ext_resource type="Material" uid="uid://bil83oc5ocyro" path="res://crusader_assets/Particles/blade_flame_left_particle_material.tres" id="8_uqxbu"]
 [ext_resource type="Material" uid="uid://c8hrkatxjfuwv" path="res://crusader_assets/Particles/blade_flame_right_particle_material.tres" id="9_2cyde"]
 [ext_resource type="Shader" uid="uid://cwds61vg57l6r" path="res://crusader_assets/Shader/blade_glow_shader.gdshader" id="10_8bjw0"]
@@ -23,7 +23,7 @@ shader_parameter/core_color = Color(1, 0.97, 0.88, 1)
 shader_parameter/core_intensity = 3.0
 shader_parameter/core_width = 0.0
 shader_parameter/core_power = 3.0
-shader_parameter/halo_color = Color(1, 0.9, 0.6, 1)
+shader_parameter/halo_color = Color(0.32941177, 0.5921569, 1, 1)
 shader_parameter/halo_intensity = 3.0
 shader_parameter/halo_width = 1.0
 shader_parameter/halo_power = 0.30000001425
@@ -217,7 +217,7 @@ bone_idx = 104
 
 [node name="BladeFlameLeft" type="GPUParticles3D" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D/BladeAttachment" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01, 0.1, 0.7)
-material_override = ExtResource("7_74gaq")
+material_override = ExtResource("7_ht3se")
 emitting = false
 amount = 15
 lifetime = 0.3
@@ -226,7 +226,7 @@ draw_pass_1 = SubResource("QuadMesh_ugy1k")
 
 [node name="BladeFlameRight" type="GPUParticles3D" parent="mdl_crusader (merge)/mdl_crusader/SHJntGrp/Skeleton3D/BladeAttachment" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, 0.1, 0.7)
-material_override = ExtResource("7_74gaq")
+material_override = ExtResource("7_ht3se")
 emitting = false
 amount = 15
 lifetime = 0.3
@@ -238,7 +238,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.65)
 visible = false
 mesh = SubResource("QuadMesh_711yb")
 
-[node name="ShadowNode" type="MeshInstance3D" parent="." index="2"]
+[node name="ShadowNode" type="MeshInstance3D" parent="." index="1"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -0.01, -0.06)
 material_override = SubResource("ShaderMaterial_hj1g1")
 mesh = SubResource("CylinderMesh_gyu5w")
