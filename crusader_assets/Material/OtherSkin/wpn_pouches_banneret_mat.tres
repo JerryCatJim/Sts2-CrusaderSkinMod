@@ -6,7 +6,7 @@
 
 [resource]
 next_pass = ExtResource("2_33hr7")
-albedo_color = Color(1.1638972, 1.1638972, 1.1638972, 1)
+albedo_color = Color(1.353256, 1.353256, 1.353256, 1)
 albedo_texture = ExtResource("1_f0da3")
 rim_enabled = true
 rim_texture = ExtResource("3_33hr7")

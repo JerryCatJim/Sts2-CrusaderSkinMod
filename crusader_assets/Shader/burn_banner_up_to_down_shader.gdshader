@@ -5,7 +5,8 @@ uniform sampler2D col_texture  : source_color, filter_linear_mipmap, repeat_enab
 uniform sampler2D ink_texture  : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D noise_texture : hint_default_black, filter_linear_mipmap, repeat_enable;
 uniform sampler2D burn_texture : source_color, filter_linear_mipmap; // GradientTexture1D
-
+//Albedo的Color的Intensity
+uniform float albedo_intensity : hint_range(0.0, 8.0) = 1.0;
 // Rim（与 StandardMaterial3D 对齐）
 uniform float rim_amount     : hint_range(0.0, 1.0) = 1.0;
 uniform float rim_tint_value : hint_range(0.0, 1.0) = 0.0;
@@ -49,7 +50,7 @@ void fragment() {
     vec2 burn_uv = vec2(inverse_lerp(dv, dv * (burn_size+1.0), noise), 0.0);
     vec4 burn = texture(burn_texture, burn_uv);
     // 基础色：未烧区显示原色，燃烧带显示渐变
-    ALBEDO = mix(col_sample.rgb, burn.rgb, burn_mask);
+    ALBEDO = mix(col_sample.rgb, burn.rgb, burn_mask) * (albedo_intensity + 1.0);
     // 关键：不要给ALPHA赋值，让godot对材质正确层级排序
     float alpha_mask = col_sample.a * burn_band;
     if (alpha_mask < 0.5) {

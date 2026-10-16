@@ -1,6 +1,6 @@
 shader_type spatial;
 render_mode unshaded, cull_front; // cull_front 是关键
-uniform float thickness = 0.01;
+uniform float thickness = 0.007;
 
 void vertex() {
     VERTEX += NORMAL * thickness; // 控制描边粗细

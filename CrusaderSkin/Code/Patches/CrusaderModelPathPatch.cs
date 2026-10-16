@@ -36,6 +36,7 @@ class CustomCharacterVisualPath
         if (__instance is not Ironclad) return true;
 
         if (string.IsNullOrEmpty(CrusaderSettings.CurrentSkin)) return true;
+        if (CrusaderSettings.CurrentSkin == "默认皮肤" || CrusaderSettings.CurrentSkin == "Default") return true;
 
         __result = SceneHelper.GetScenePath("creature_visuals/ironclad" + TscnPathGetter.GetPath());
         return false;
@@ -51,6 +52,7 @@ class RestSiteAnimPath
         if (__instance is not Ironclad) return true;
 
         if (string.IsNullOrEmpty(CrusaderSettings.CurrentSkin)) return true;
+        if (CrusaderSettings.CurrentSkin == "默认皮肤" || CrusaderSettings.CurrentSkin == "Default") return true;
 
         __result = SceneHelper.GetScenePath("rest_site/characters/ironclad" + TscnPathGetter.GetPath() + "_rest_site");
         return false;
@@ -66,6 +68,7 @@ class MerchantAnimPath
         if (__instance is not Ironclad) return true;
 
         if (string.IsNullOrEmpty(CrusaderSettings.CurrentSkin)) return true;
+        if (CrusaderSettings.CurrentSkin == "默认皮肤" || CrusaderSettings.CurrentSkin == "Default") return true;
 
         __result = SceneHelper.GetScenePath("merchant/characters/ironclad" + TscnPathGetter.GetPath() + "_merchant");
         return false;

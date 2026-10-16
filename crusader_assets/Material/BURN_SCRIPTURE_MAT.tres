@@ -13,6 +13,7 @@ shader_parameter/col_texture = ExtResource("3_ni4rn")
 shader_parameter/ink_texture = ExtResource("4_2fict")
 shader_parameter/noise_texture = ExtResource("5_xo26o")
 shader_parameter/burn_texture = ExtResource("2_wrymg")
+shader_parameter/albedo_intensity = 1.0
 shader_parameter/rim_amount = 1.0
 shader_parameter/rim_tint_value = 0.0
 shader_parameter/dissolve_value = 0.0

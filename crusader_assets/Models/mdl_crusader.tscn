@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b7adhhqafrx2a" path="res://crusader_assets/Models/mdl_crusader.fbx" id="1_vgc3n"]
 [ext_resource type="Material" uid="uid://def3qh1aevc60" path="res://crusader_assets/Material/char_mat.tres" id="2_034uv"]
-[ext_resource type="Material" uid="uid://dfv2vjskaebuq" path="res://crusader_assets/Material/burn_banner_mat.tres" id="3_yc230"]
+[ext_resource type="Material" uid="uid://b6ynl1gii52nd" path="res://crusader_assets/Material/burn_banner_mat.tres" id="3_yc230"]
 [ext_resource type="Material" uid="uid://41b0p8qkvic5" path="res://crusader_assets/Material/wpn_pouches_mat.tres" id="4_g4tjm"]
 [ext_resource type="Material" uid="uid://oa5iw1usm8l5" path="res://crusader_assets/Material/burn_scripture_mat.tres" id="5_yc230"]
 [ext_resource type="Shader" uid="uid://cwds61vg57l6r" path="res://crusader_assets/Shader/blade_glow_shader.gdshader" id="6_cqc3e"]
