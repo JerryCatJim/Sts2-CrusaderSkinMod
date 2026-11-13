@@ -9,7 +9,7 @@ namespace CrusaderSkin.Code.Singleton;
 /// <summary>
 /// Model that will passively receive hooks at all times.
 /// </summary>
-public abstract class CustomCrusaderSingletonModel : SingletonModel//, ICustomModel
+public abstract class CustomCrusaderSingletonModel : AbstractModel//SingletonModel
 {
     public enum HookType
     {
@@ -40,12 +40,19 @@ public abstract class CustomCrusaderSingletonModel : SingletonModel//, ICustomMo
         }
     }
 
+    protected IRunState? CurrentRunState { get; private set; }
+    protected CombatState? CurrentCombatState { get; private set; }
+
     private IEnumerable<AbstractModel> RunSubModels(RunState runState)
     {
+        CurrentRunState = runState;
+        CurrentCombatState = null;
         return [this];
     }
     private IEnumerable<AbstractModel> CombatSubModels(CombatState combatState)
     {
+        CurrentCombatState = combatState;
+        CurrentRunState = combatState.RunState;
         return [this];
     }
 }
