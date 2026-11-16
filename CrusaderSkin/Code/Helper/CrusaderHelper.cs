@@ -1,3 +1,4 @@
+using CrusaderSkin.Code.Audio;
 using CrusaderSkin.Code.ModConfig;
 using Godot;
 using MegaCrit.Sts2.Core.Assets;
@@ -13,6 +14,7 @@ using MegaCrit.Sts2.Core.Models.Characters;
 using MegaCrit.Sts2.Core.Nodes.Combat;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CrusaderSkin.Code.Helper;
@@ -89,11 +91,15 @@ public static class CrusaderHelper
             if (state_machine != null)
             {
                 return state_machine.GetCurrentNode() == "Idle"; //||
-                    //state_machine.GetCurrentNode() == "Revive";
-                //|| state_machine.GetFadingFromNode() == "Idle" || xxxxxx;
+                                                                 //state_machine.GetCurrentNode() == "Revive";
+                                                                 //|| state_machine.GetFadingFromNode() == "Idle" || xxxxxx;
             }
         }
         return false;
+    }
+    public static void ClearDataCache()
+    {
+        _lastEffects.Clear();
     }
     public static void InitCrusaderVisualAfterCombatStart(AnimationTree? tree, Creature creature)
     {
@@ -162,7 +168,7 @@ public static class CrusaderHelper
         if (!animName.Contains("CardPlay/")) return false;
 
         if (animName.Contains("Accus")
-            || animName.Contains("Heal") )
+            || animName.Contains("Heal"))
         {
             return true;
         }
@@ -193,45 +199,87 @@ public static class CrusaderHelper
     public static void TryPlayCombatEffect(string animName, NCreature nCreature)
     {
         if (!CrusaderSettings.PlayCardVfx) return;
+        if (!CrusaderSettings.PlaySmiteRecoverVfx && animName == "CardPlay/Smite_Recover") return;
+
+        ClearLastRecoverEffect(nCreature);
 
         string effectPath = "";
         bool shouldBackContainer = false;
-        bool useCenterPos = true;
+        bool useCenterPos = false;
         switch (animName)
         {
             case "CardPlay/Smite":
                 effectPath = "res://crusader_assets/Effects/SmiteEffect.tscn";
-                useCenterPos = false;
+                break;
+            case "CardPlay/Smite_Recover":
+                effectPath = "res://crusader_assets/Effects/SmiteRecoverEffect.tscn";
+                shouldBackContainer = true;
+                break;
+            case "CardPlay/Accus_Recover":
+            case "CardPlay/Heal_Recover":
+                effectPath = "res://crusader_assets/Effects/ScriptureRecoverEffect.tscn";
+                break;
+            case "CardPlay/Holy_Recover":
+                effectPath = "res://crusader_assets/Effects/HolyRecoverEffect.tscn";
                 break;
             case "CardPlay/Reap":
                 effectPath = "res://crusader_assets/Effects/ReapEffect.tscn";
-                useCenterPos = false;
                 break;
             case "CardPlay/Bulwark":
-                effectPath = "res://crusader_assets/Effects/SelfGlow.tscn";
-                shouldBackContainer = true;
-                break;
             case "CardPlay/Tenacity":
-                effectPath = "res://crusader_assets/Effects/SelfGlow.tscn";
+                effectPath = "res://crusader_assets/Effects/BulwarkEffect.tscn";
+                shouldBackContainer = true;
+                useCenterPos = true;
+                break;
+            case "CardPlay/Tenacity_Recover":
+                effectPath = "res://crusader_assets/Effects/BannerRecoverEffect.tscn";
                 shouldBackContainer = true;
                 break;
             case "CardPlay/Insp":
-                effectPath = "res://crusader_assets/Effects/BirdGlow.tscn";
+                effectPath = "res://crusader_assets/Effects/InspEffect.tscn";
                 shouldBackContainer = true;
-                useCenterPos = false;
+                break;
+            case "CardPlay/Insp_Recover":
+                effectPath = "res://crusader_assets/Effects/BannerRecoverEffect.tscn";
+                shouldBackContainer = true;
                 break;
             case "CardPlay/Rally":
-                effectPath = "res://crusader_assets/Effects/DustFlow.tscn";
-                useCenterPos = false;
+                effectPath = "res://crusader_assets/Effects/RallyEffect.tscn";
+                break;
+            case "CardPlay/Rally_Recover":
+                effectPath = "res://crusader_assets/Effects/BannerRecoverEffect.tscn";
+                shouldBackContainer = true;
+                break;
+            case "CardPlay/Stun":
+                effectPath = "res://crusader_assets/Effects/StunEffect.tscn";
+                break;
+            case "CardPlay/Stun_Recover":
+                effectPath = "res://crusader_assets/Effects/StunRecoverEffect.tscn";
                 break;
             default:
                 return;
         }
+        LoadEffect(animName, effectPath, nCreature, shouldBackContainer, useCenterPos);
+    }
+    private class LastEffect
+    {
+        public LastEffect(bool IsRecoverEffect, Node2D EffectNode)
+        {
+            isRecoverEffect = IsRecoverEffect;
+            effectNode = EffectNode;
+        }
+        public bool isRecoverEffect = false;
+        public Node2D effectNode = null;
+    }
+    private static readonly Dictionary<NCreature, LastEffect> _lastEffects = new();
+    private static void LoadEffect(string animName, string effectPath, NCreature nCreature, bool shouldBackContainer, bool useCenterPos)
+    {
         Node2D effectNode = PreloadManager.Cache.GetScene(effectPath).Instantiate<Node2D>();
         if (effectNode == null) return;
 
         if (effectNode != null && effectNode.GetParent() == null && NCombatRoom.Instance != null && nCreature != null)
         {
+            RegisterLastEffect(nCreature, animName.Contains("Recover"), effectNode);
             var parentNode = shouldBackContainer ? NCombatRoom.Instance.BackCombatVfxContainer : NCombatRoom.Instance.CombatVfxContainer;
             parentNode.AddChild(effectNode);
 
@@ -328,5 +376,34 @@ public static class CrusaderHelper
             default:
                 return false;
         }
+    }
+    private static void ClearLastRecoverEffect(NCreature nCreature)
+    {
+        if (!GodotObject.IsInstanceValid(nCreature)) return;
+
+        if (_lastEffects.TryGetValue(nCreature, out var lastEffect))
+        {
+            if (lastEffect != null && lastEffect.isRecoverEffect && GodotObject.IsInstanceValid(lastEffect.effectNode))
+            {
+                lastEffect.effectNode.Visible = false;
+                lastEffect.effectNode.QueueFreeSafely();
+
+                lastEffect.isRecoverEffect = false;
+                lastEffect.effectNode = null;
+
+                if (CrusaderSettings.InterruptRecoverSfx)
+                {
+                    CombatAudioManager.StopPlayingCombatSfx(2);
+                }
+
+                _lastEffects.Remove(nCreature);
+            }
+        }
+    }
+    private static void RegisterLastEffect(NCreature nCreature, bool isRecoverEffect, Node2D effectNode)
+    {
+        if (!GodotObject.IsInstanceValid(nCreature)) return;
+
+        _lastEffects[nCreature] = new LastEffect(isRecoverEffect, effectNode);
     }
 }

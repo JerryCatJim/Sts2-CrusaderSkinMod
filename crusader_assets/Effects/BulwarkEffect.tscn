@@ -5,7 +5,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o80mp"]
 shader = ExtResource("1_o80mp")
 shader_parameter/aspect = 1.0
-shader_parameter/global_intensity = 1.0
+shader_parameter/global_intensity = 0.0
 shader_parameter/core_color = Color(1, 0.97, 0.88, 1)
 shader_parameter/core_size = 0.05
 shader_parameter/core_power = 3.0
@@ -43,7 +43,7 @@ _data = {
 &"Show": SubResource("Animation_o80mp")
 }
 
-[node name="SelfGlow" type="Node2D"]
+[node name="BulwarkEffect" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_o80mp")

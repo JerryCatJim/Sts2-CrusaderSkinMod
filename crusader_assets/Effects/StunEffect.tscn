@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7jr847i6jl1m"]
+
+[ext_resource type="Texture2D" uid="uid://d16j4sfgvh733" path="res://crusader_assets/Effects/EffectTexture/stun_glow.png" id="1_s0scw"]
+[ext_resource type="Texture2D" uid="uid://cia4osqy7lif4" path="res://crusader_assets/Effects/EffectTexture/stun_light2D.png" id="2_5ac4n"]
+
+[sub_resource type="Animation" id="Animation_o80mp"]
+resource_name = "empty"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.13333334, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 0.9, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PointLight2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.13333334, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.5, 1.2, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqhp6"]
+_data = {
+&"Show": SubResource("Animation_o80mp")
+}
+
+[node name="StunEffect" type="Node2D"]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(128, -256)
+color = Color(1, 0.8235294, 0.29411766, 1)
+energy = 1.2835715
+texture = ExtResource("2_5ac4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(179, -256)
+rotation = 0.34906584
+texture = ExtResource("1_s0scw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_tqhp6")
+}

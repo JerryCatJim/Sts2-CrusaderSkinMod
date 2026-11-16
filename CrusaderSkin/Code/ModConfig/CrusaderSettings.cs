@@ -4,8 +4,10 @@ public static class CrusaderSettings
 {
     public static float CardVolumeOffset => (float)RitsuLibModConfig.GetRitsuLibSettingDouble("CardVolumeOffset");
     public static bool PlayCardSfx => RitsuLibModConfig.GetRitsuLibSettingBool("PlayCardSfx");
+    public static bool InterruptRecoverSfx => RitsuLibModConfig.GetRitsuLibSettingBool("InterruptRecoverSfx");
     public static bool PlayCardAnims => RitsuLibModConfig.GetRitsuLibSettingBool("PlayCardAnims");
     public static bool PlayCardVfx => RitsuLibModConfig.GetRitsuLibSettingBool("PlayCardVfx");
+    public static bool PlaySmiteRecoverVfx => RitsuLibModConfig.GetRitsuLibSettingBool("PlaySmiteRecoverVfx");
     public static bool UseLowHealthIdle => RitsuLibModConfig.GetRitsuLibSettingBool("UseLowHealthIdle");
     public static bool SwitchBannerImmediately => RitsuLibModConfig.GetRitsuLibSettingBool("SwitchBannerImmediately");
     public static bool ShowTeammateCardSelectAnim => RitsuLibModConfig.GetRitsuLibSettingBool("ShowTeammateCardSelectAnim");

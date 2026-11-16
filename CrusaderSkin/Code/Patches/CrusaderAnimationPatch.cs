@@ -172,6 +172,8 @@ public static class CrusaderAnimationPatch
                             }
                         }
                     }
+                    //注意，如果想把播放特效放到_staticStateStartedCallable中，需把_staticStateStartedCallable改为按Creature或者NCreature记录的字典型callable
+                    CrusaderHelper.TryPlayCombatEffect(animName, node);
                 }
                 else if (animName.Contains("CardPlay/"))
                 {
@@ -181,11 +183,45 @@ public static class CrusaderAnimationPatch
                         string cardAnimName = animName.Replace("CardPlay/", "");
                         if (!CrusaderHelper.CanTravelTo(cardAnimName)) return;
 
-                        //不要重复链接
-                        if (!Attack_SM.IsConnected("state_started", _stateStartedCallable))
+                        /*//不要重复链接
+                        if (!Attack_SM.IsConnected("state_started", _staticStateStartedCallable))
                         {
                             //持续监听,不要OnShot
-                            Attack_SM.Connect("state_started", _stateStartedCallable);
+                            Attack_SM.Connect("state_started", _staticStateStartedCallable);
+                        }*/
+
+                        //不要重复链接
+                        if (!_stateStartedCallables.TryGetValue(node, out var stateStartedCallable) ||
+                            stateStartedCallable.Equals(default(Callable)) ||
+                            !Attack_SM.IsConnected("state_started", stateStartedCallable))
+                        {
+                            stateStartedCallable = Callable.From((StringName state) =>
+                            {
+                                if (CrusaderSettings.PlayCardSfx)
+                                {
+                                    float VolumeDB = CombatAudioCfg.GetCrusaderVolumeDB("CardPlay/" + state);
+                                    //按理来说音频可叠加，但测试发现state和state_Recover都用TempAudio播放会失真？所以区分一下
+                                    //把Play音效设置使用第二个单例Audio与选择卡牌的audio区分开，以免连续打出卡牌时上一个Play音效被下一张Select音效打断的问题
+                                    //而且要开启CardPlay状态机结点的AllowTransitionToSelf，否则连续打出相同卡牌时音效和动画不会打断重播
+                                    CombatAudioManager.PlayCombatSfx("CardPlay/" + state, 
+                                        bIsTemp : false, 
+                                        false, 
+                                        VolumeDB, 
+                                        state.ToString().Contains("Recover") ? 2 : 1); //若为IsTemp，输入的Index不会生效
+                                    //CombatAudioManager.PlayCombatSfx("CardPlay/" + state, state.ToString().Contains("Recover"), false, VolumeDB, 1); //若为IsTemp，输入的Index不会生效
+                                }
+                                if (state.ToString().Contains("Recover"))
+                                {
+                                    //不要填入animName，闭包获取值是按链接时的快照
+                                    CrusaderHelper.TryPlayCombatEffect("CardPlay/" + state, node);
+                                    //用后即弃，防止跨战斗残留空数据
+                                    Attack_SM.Disconnect("state_started", stateStartedCallable);
+                                    _stateStartedCallables.Remove(node);
+                                }
+                            });
+                            _stateStartedCallables[node] = stateStartedCallable;
+                            //持续监听,手动移除
+                            Attack_SM.Connect("state_started", stateStartedCallable);
                         }
 
                         if (CrusaderHelper.ShouldShowBanner(animName) && CrusaderSettings.SwitchBannerImmediately)
@@ -197,7 +233,7 @@ public static class CrusaderAnimationPatch
                             state_machine.Travel("CardPlay");
                         }
                         Attack_SM.Travel(cardAnimName);
-                        //注意，如果想把播放特效放到_stateStartedCallable中，需把_stateStartedCallable改为按Creature或者NCreature记录的字典型callable
+                        //注意，如果想把播放特效放到_staticStateStartedCallable中，需把_staticStateStartedCallable改为按Creature或者NCreature记录的字典型callable
                         CrusaderHelper.TryPlayCombatEffect(animName, node);
                     }
                 }
@@ -215,7 +251,8 @@ public static class CrusaderAnimationPatch
         }
     }
     private static readonly Dictionary<NCreature, Callable> _idleCallables = new();
-    private static readonly Callable _stateStartedCallable = Callable.From((StringName state) =>
+    private static readonly Dictionary<NCreature, Callable> _stateStartedCallables = new();
+    /*private static readonly Callable _staticStateStartedCallable = Callable.From((StringName state) =>
     {
         if (CrusaderSettings.PlayCardSfx)
         {
@@ -225,7 +262,7 @@ public static class CrusaderAnimationPatch
             //而且要开启CardPlay状态机结点的AllowTransitionToSelf，否则连续打出相同卡牌时音效和动画不会打断重播
             CombatAudioManager.PlayCombatSfx("CardPlay/" + state, state.ToString().Contains("Recover"), false, VolumeDB, 1); //若为IsTemp，输入的Index不会生效
         }
-    });
+    });*/
 }
 
 [HarmonyPatch(typeof(HoveredModelTracker), "OnLocalCardSelected")]

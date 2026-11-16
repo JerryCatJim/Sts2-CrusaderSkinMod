@@ -9,31 +9,44 @@ namespace CrusaderSkin.Code.Audio;
 
 public static class CombatAudioManager
 {
-    private static AudioStreamPlayer? _playerAudioPlayer;
-    public static AudioStreamPlayer PlayerAudioPlayer
+    private static AudioStreamPlayer? _cardSelectAudioPlayer;
+    public static AudioStreamPlayer CardSelectAudioPlayer
     {
         get
         {
             // IsInstanceValid 能同时检测 null 和已被 QueueFree 的对象
-            if (!GodotObject.IsInstanceValid(_playerAudioPlayer))
+            if (!GodotObject.IsInstanceValid(_cardSelectAudioPlayer))
             {
-                _playerAudioPlayer = new AudioStreamPlayer();
+                _cardSelectAudioPlayer = new AudioStreamPlayer();
             }
-            return _playerAudioPlayer;
+            return _cardSelectAudioPlayer;
         }
     }
 
-    private static AudioStreamPlayer? _secondPlayerAudioPlayer;
-    public static AudioStreamPlayer SecondPlayerAudioPlayer
+    private static AudioStreamPlayer? _cardPlayAudioPlayer;
+    public static AudioStreamPlayer CardPlayAudioPlayer
     {
         get
         {
             // IsInstanceValid 能同时检测 null 和已被 QueueFree 的对象
-            if (!GodotObject.IsInstanceValid(_secondPlayerAudioPlayer))
+            if (!GodotObject.IsInstanceValid(_cardPlayAudioPlayer))
             {
-                _secondPlayerAudioPlayer = new AudioStreamPlayer();
+                _cardPlayAudioPlayer = new AudioStreamPlayer();
             }
-            return _secondPlayerAudioPlayer;
+            return _cardPlayAudioPlayer;
+        }
+    }
+    private static AudioStreamPlayer? _cardPlayRecoverAudioPlayer;
+    public static AudioStreamPlayer CardPlayRecoverAudioPlayer
+    {
+        get
+        {
+            // IsInstanceValid 能同时检测 null 和已被 QueueFree 的对象
+            if (!GodotObject.IsInstanceValid(_cardPlayRecoverAudioPlayer))
+            {
+                _cardPlayRecoverAudioPlayer = new AudioStreamPlayer();
+            }
+            return _cardPlayRecoverAudioPlayer;
         }
     }
 
@@ -82,15 +95,34 @@ public static class CombatAudioManager
         }
     }
 
+    public static void StopPlayingCombatSfx(int index = 0)
+    {
+        switch (index)
+        {
+            case 0:
+            default:
+                CardSelectAudioPlayer.Stop();
+                return;
+            case 1:
+                CardPlayAudioPlayer.Stop();
+                return;
+            case 2:
+                CardPlayRecoverAudioPlayer.Stop();
+                return;
+        }
+    }
+
     private static AudioStreamPlayer GetPlayerAudioPlayer(int index = 0)
     {
         switch (index)
         {
             case 0:
             default:
-                return PlayerAudioPlayer;
+                return CardSelectAudioPlayer;
             case 1:
-                return SecondPlayerAudioPlayer;
+                return CardPlayAudioPlayer;
+            case 2:
+                return CardPlayRecoverAudioPlayer;
         }
     }
 }

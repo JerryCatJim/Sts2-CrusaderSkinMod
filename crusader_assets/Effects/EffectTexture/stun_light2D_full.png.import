@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp2jxla03eyhr"
-path="res://.godot/imported/crusader_stun_texture.png-e7db4faaa3e2ef06243aa48d327e4a8a.ctex"
+uid="uid://cbposr4y4ojpi"
+path="res://.godot/imported/stun_light2D_full.png-4aa96da11cd6e747d633b1879f8dc80b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://crusader_assets/Effects/EffectTexture/crusader_stun_texture.png"
-dest_files=["res://.godot/imported/crusader_stun_texture.png-e7db4faaa3e2ef06243aa48d327e4a8a.ctex"]
+source_file="res://crusader_assets/Effects/EffectTexture/stun_light2D_full.png"
+dest_files=["res://.godot/imported/stun_light2D_full.png-4aa96da11cd6e747d633b1879f8dc80b.ctex"]
 
 [params]
 

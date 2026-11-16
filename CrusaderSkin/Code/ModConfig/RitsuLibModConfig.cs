@@ -19,8 +19,10 @@ public static class RitsuLibModConfig
 	{
 		["CardVolumeOffset"] = 0,
 		["PlayCardSfx"] = true,
+        ["InterruptRecoverSfx"] = true,
         ["PlayCardAnims"] = true,
         ["PlayCardVfx"] = true,
+        ["PlaySmiteRecoverVfx"] = true,
         ["UseLowHealthIdle"] = true,
 		["SwitchBannerImmediately"] = false,
 		["ShowTeammateCardSelectAnim"] = true,
@@ -86,44 +88,56 @@ public static class RitsuLibModConfig
         toggle0.label = SimpleLocUtil.Simple("播放卡牌音效", "Play Card Sfx");
         toggle0.description = SimpleLocUtil.Simple("关闭后会恢复至原版游戏默认攻击音效", "If unchecked, attack cards will use the original SFX.");
         cardSfxSec.entries.Add(toggle0);
+        ToggleEntry toggle1 = new ToggleEntry();
+        toggle1.id = "InterruptRecoverSfx";
+        toggle1.key = toggle1.id;
+        toggle1.label = SimpleLocUtil.Simple("播放新动画时立刻打断收尾动画的音效", "Interrupt Recover Sfx When Playing New Anims");
+        toggle1.description = SimpleLocUtil.Simple("关闭后收尾动画音效不会被打断", "If unchecked, recover Sfx will not be interrupted.");
+        cardSfxSec.entries.Add(toggle1);
 
         RLMCSection cardVfxSec = new RLMCSection();
         cardVfxSec.id = "card_vfx";
         cardVfxSec.title = SimpleLocUtil.Simple("卡牌动画和特效", "Card Anim And Vfx");
-        ToggleEntry toggle1 = new ToggleEntry();
-        toggle1.id = "PlayCardAnims";
-        toggle1.key = toggle1.id;
-        toggle1.label = SimpleLocUtil.Simple("播放卡牌动画", "Play Card Anims");
-        toggle1.description = SimpleLocUtil.Simple("关闭后会无法播放卡牌的选择和打出动画,卡牌特效以及音效", "If unchecked, card select/play anims, VFX and SFX wil not play.");
-        cardVfxSec.entries.Add(toggle1);
         ToggleEntry toggle2 = new ToggleEntry();
-        toggle2.id = "PlayCardVfx";
+        toggle2.id = "PlayCardAnims";
         toggle2.key = toggle2.id;
-        toggle2.label = SimpleLocUtil.Simple("播放卡牌特效", "Play Card Vfx");
-        toggle2.description = SimpleLocUtil.Simple("关闭后会无法播放卡牌的打出特效", "If unchecked, card play VFX wil not play.");
+        toggle2.label = SimpleLocUtil.Simple("播放卡牌动画", "Play Card Anims");
+        toggle2.description = SimpleLocUtil.Simple("关闭后会无法播放卡牌的选择和打出动画,卡牌特效以及音效", "If unchecked, card select/play anims, VFX and SFX wil not play.");
         cardVfxSec.entries.Add(toggle2);
+        ToggleEntry toggle3 = new ToggleEntry();
+        toggle3.id = "PlayCardVfx";
+        toggle3.key = toggle3.id;
+        toggle3.label = SimpleLocUtil.Simple("播放卡牌特效", "Play Card Vfx");
+        toggle3.description = SimpleLocUtil.Simple("关闭后会无法播放卡牌的打出特效", "If unchecked, card play VFX wil not play.");
+        cardVfxSec.entries.Add(toggle3);
+        ToggleEntry toggle4 = new ToggleEntry();
+        toggle4.id = "PlaySmiteRecoverVfx";
+        toggle4.key = toggle4.id;
+        toggle4.label = SimpleLocUtil.Simple("播放惩击收尾动画特效", "Play Smite Recover Anim Vfx");
+        toggle4.description = SimpleLocUtil.Simple("关闭后会不会播放惩击收尾动画的特效", "If unchecked, smite recover anim VFX wil not play.");
+        cardVfxSec.entries.Add(toggle4);
 
         RLMCSection animSec = new RLMCSection();
         animSec.id = "character_anim";
         animSec.title = SimpleLocUtil.Simple("角色动画", "Character Anim");
-        ToggleEntry toggle3 = new ToggleEntry();
-        toggle3.id = "UseLowHealthIdle";
-        toggle3.key = toggle3.id;
-        toggle3.label = SimpleLocUtil.Simple("展示低血量站立动画", "Show Low Health Idle Anim");
-        toggle3.description = SimpleLocUtil.Simple("关闭后不会使用低血量站立动画", "If unchecked, low health idle anim wil not play.");
-        animSec.entries.Add(toggle3);
-        ToggleEntry toggle4 = new ToggleEntry();
-        toggle4.id = "SwitchBannerImmediately";
-        toggle4.key = toggle4.id;
-        toggle4.label = SimpleLocUtil.Simple("立即切换旗帜动画", "Switch Banner Immediately");
-        toggle4.description = SimpleLocUtil.Simple("开启后播放旗帜动画时不会混合过渡", "If checked, banner anims will have no mixed transition.");
-        animSec.entries.Add(toggle4);
         ToggleEntry toggle5 = new ToggleEntry();
-        toggle5.id = "ShowTeammateCardSelectAnim";
+        toggle5.id = "UseLowHealthIdle";
         toggle5.key = toggle5.id;
-        toggle5.label = SimpleLocUtil.Simple("展示队友十字军的选卡动画", "Show Teammate Crusader Card Select Anim");
-        toggle5.description = SimpleLocUtil.Simple("关闭后不会播放队友十字军的选卡动画", "If unchecked, teammate Crusader card select anims will not play.");
+        toggle5.label = SimpleLocUtil.Simple("展示低血量站立动画", "Show Low Health Idle Anim");
+        toggle5.description = SimpleLocUtil.Simple("关闭后不会使用低血量站立动画", "If unchecked, low health idle anim wil not play.");
         animSec.entries.Add(toggle5);
+        ToggleEntry toggle6 = new ToggleEntry();
+        toggle6.id = "SwitchBannerImmediately";
+        toggle6.key = toggle6.id;
+        toggle6.label = SimpleLocUtil.Simple("立即切换旗帜动画", "Switch Banner Immediately");
+        toggle6.description = SimpleLocUtil.Simple("开启后播放旗帜动画时不会混合过渡", "If checked, banner anims will have no mixed transition.");
+        animSec.entries.Add(toggle6);
+        ToggleEntry toggle7 = new ToggleEntry();
+        toggle7.id = "ShowTeammateCardSelectAnim";
+        toggle7.key = toggle7.id;
+        toggle7.label = SimpleLocUtil.Simple("展示队友十字军的选卡动画", "Show Teammate Crusader Card Select Anim");
+        toggle7.description = SimpleLocUtil.Simple("关闭后不会播放队友十字军的选卡动画", "If unchecked, teammate Crusader card select anims will not play.");
+        animSec.entries.Add(toggle7);
 
         mainPage.sections.Add(skinChangeSec);
         mainPage.sections.Add(cardSfxSec);

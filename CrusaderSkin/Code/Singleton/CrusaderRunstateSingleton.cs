@@ -13,6 +13,7 @@ public class CrusaderRunstateSingleton : CustomCrusaderSingletonModel
     }
     public override Task AfterRoomEntered(AbstractRoom room)
     {
+        CrusaderHelper.ClearDataCache();
         if (room is CombatRoom combatRoom)
         {
             foreach (Creature creature in combatRoom.CombatState.PlayerCreatures)
