@@ -7,9 +7,9 @@
 	<Sts2Dir>E:\Steam\steamapps\common\Slay the Spire 2</Sts2Dir>
   </PropertyGroup>
 	<PropertyGroup>
-		<AssemblyVersion>0.1.6</AssemblyVersion>
-		<FileVersion>0.1.6</FileVersion>
-		<Version>0.1.6</Version>
+		<Version>0.1.7</Version>
+		<FileVersion>0.1.7</FileVersion>
+		<AssemblyVersion>0.0.1</AssemblyVersion>
 	</PropertyGroup>
   <ItemGroup>
     <Content Include="CrusaderAnimConfig.json" />
