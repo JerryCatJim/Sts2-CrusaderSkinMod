@@ -207,10 +207,10 @@ public static class CrusaderAnimationPatch
                                         bIsTemp : false, 
                                         false, 
                                         VolumeDB, 
-                                        state.ToString().Contains("Recover") ? 2 : 1); //若为IsTemp，输入的Index不会生效
-                                    //CombatAudioManager.PlayCombatSfx("CardPlay/" + state, state.ToString().Contains("Recover"), false, VolumeDB, 1); //若为IsTemp，输入的Index不会生效
+                                        state.ToString().Contains("_Recover") ? 2 : 1); //若为IsTemp，输入的Index不会生效
+                                    //CombatAudioManager.PlayCombatSfx("CardPlay/" + state, state.ToString().Contains("_Recover"), false, VolumeDB, 1); //若为IsTemp，输入的Index不会生效
                                 }
-                                if (state.ToString().Contains("Recover"))
+                                if (state.ToString().Contains("_Recover"))
                                 {
                                     //不要填入animName，闭包获取值是按链接时的快照
                                     CrusaderHelper.TryPlayCombatEffect("CardPlay/" + state, node);
@@ -260,7 +260,7 @@ public static class CrusaderAnimationPatch
             //按理来说音频可叠加，但测试发现state和state_Recover都用TempAudio播放会失真？所以区分一下
             //把Play音效设置使用第二个单例Audio与选择卡牌的audio区分开，以免连续打出卡牌时上一个Play音效被下一张Select音效打断的问题
             //而且要开启CardPlay状态机结点的AllowTransitionToSelf，否则连续打出相同卡牌时音效和动画不会打断重播
-            CombatAudioManager.PlayCombatSfx("CardPlay/" + state, state.ToString().Contains("Recover"), false, VolumeDB, 1); //若为IsTemp，输入的Index不会生效
+            CombatAudioManager.PlayCombatSfx("CardPlay/" + state, state.ToString().Contains("_Recover"), false, VolumeDB, 1); //若为IsTemp，输入的Index不会生效
         }
     });*/
 }
