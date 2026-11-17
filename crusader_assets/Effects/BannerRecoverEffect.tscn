@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cfihriiivtjv2" path="res://crusader_assets/Effects/EffectTexture/BannerRecover_WhiteLines.png" id="1_eogip"]
 [ext_resource type="Texture2D" uid="uid://pwixxfdyvf21" path="res://crusader_assets/Effects/EffectTexture/dust_effect.png" id="1_u1mp5"]
-[ext_resource type="Material" uid="uid://btlr0ie46ap2q" path="res://crusader_assets/Effects/Shader/dissolve_2d_shader.tres" id="2_eogip"]
+[ext_resource type="Material" uid="uid://btlr0ie46ap2q" path="res://crusader_assets/Effects/Shader/dissolve_2d_banner_shader.tres" id="2_eogip"]
 
 [sub_resource type="Animation" id="Animation_o80mp"]
 resource_name = "empty"

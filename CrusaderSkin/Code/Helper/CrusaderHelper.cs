@@ -201,7 +201,7 @@ public static class CrusaderHelper
         if (!CrusaderSettings.PlayCardVfx) return;
         if (!CrusaderSettings.PlaySmiteRecoverVfx && animName == "CardPlay/Smite_Recover") return;
 
-        ClearLastRecoverEffect(nCreature);
+        ClearLastRecoverEffectAndSfx(nCreature, animName);
 
         string effectPath = "";
         bool shouldBackContainer = false;
@@ -256,6 +256,10 @@ public static class CrusaderHelper
             case "CardPlay/Stun_Recover":
                 effectPath = "res://crusader_assets/Effects/StunRecoverEffect.tscn";
                 break;
+            case "CardPlay/Mercy":
+                effectPath = "res://crusader_assets/Effects/MercyEffect.tscn";
+                shouldBackContainer = true;
+                break;
             default:
                 return;
         }
@@ -279,7 +283,7 @@ public static class CrusaderHelper
 
         if (effectNode != null && effectNode.GetParent() == null && NCombatRoom.Instance != null && nCreature != null)
         {
-            RegisterLastEffect(nCreature, animName.Contains("Recover"), effectNode);
+            RegisterLastEffect(nCreature, animName.Contains("_Recover"), effectNode);
             var parentNode = shouldBackContainer ? NCombatRoom.Instance.BackCombatVfxContainer : NCombatRoom.Instance.CombatVfxContainer;
             parentNode.AddChild(effectNode);
 
@@ -377,7 +381,7 @@ public static class CrusaderHelper
                 return false;
         }
     }
-    private static void ClearLastRecoverEffect(NCreature nCreature)
+    private static void ClearLastRecoverEffectAndSfx(NCreature nCreature, string animName)
     {
         if (!GodotObject.IsInstanceValid(nCreature)) return;
 
@@ -391,13 +395,14 @@ public static class CrusaderHelper
                 lastEffect.isRecoverEffect = false;
                 lastEffect.effectNode = null;
 
-                if (CrusaderSettings.InterruptRecoverSfx)
-                {
-                    CombatAudioManager.StopPlayingCombatSfx(2);
-                }
-
                 _lastEffects.Remove(nCreature);
             }
+        }
+        //AnimPatch中的顺序是先播放声音再播放特效，所以要排除Recover动画刚播放后就把自己声音清除的情况
+        //潜在问题: xxx_Recover动画一般是我约定的动画最后一段的命名，所以如果xxx_Recover之后又有一段后续动画，会导致xxx_Recover的音效被自动清除
+        if (!animName.Contains("_Recover") && CrusaderSettings.InterruptRecoverSfx)
+        {
+            CombatAudioManager.StopPlayingCombatSfx(2);
         }
     }
     private static void RegisterLastEffect(NCreature nCreature, bool isRecoverEffect, Node2D effectNode)

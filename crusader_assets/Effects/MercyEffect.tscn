@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://c01h0p8r58eng"]
+
+[ext_resource type="Material" uid="uid://dlsor2rqvnrst" path="res://crusader_assets/Effects/Shader/dissolve_2d_mercy_shader.tres" id="2_k7bvu"]
+[ext_resource type="Texture2D" uid="uid://cfihriiivtjv2" path="res://crusader_assets/Effects/EffectTexture/BannerRecover_WhiteLines.png" id="2_l0s7s"]
+[ext_resource type="Texture2D" uid="uid://pwixxfdyvf21" path="res://crusader_assets/Effects/EffectTexture/dust_effect.png" id="3_qnpci"]
+
+[sub_resource type="Animation" id="Animation_o80mp"]
+resource_name = "empty"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dust:modulate:a")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WhiteLines:modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0, 1.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WhiteLines:material:shader_parameter/dissolve_value")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqhp6"]
+_data = {
+&"Show": SubResource("Animation_o80mp")
+}
+
+[node name="MercyEffect" type="Node2D"]
+
+[node name="WhiteLines" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.33333337)
+material = ExtResource("2_k7bvu")
+position = Vector2(131, -13.999999)
+rotation = 0.08726646
+scale = Vector2(1.125, 0.625)
+texture = ExtResource("2_l0s7s")
+
+[node name="Dust" type="Sprite2D" parent="."]
+modulate = Color(0.50140655, 0.5014065, 0.5014065, 0.25)
+position = Vector2(127, 27)
+scale = Vector2(1, -0.5)
+texture = ExtResource("3_qnpci")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_tqhp6")
+}

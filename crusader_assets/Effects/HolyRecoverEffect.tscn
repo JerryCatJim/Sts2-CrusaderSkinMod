@@ -12,10 +12,34 @@ tracks/0/path = NodePath("WhiteLines:modulate:a")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.2, 0.3, 0.4),
+"times": PackedFloat32Array(0, 0.16666667, 0.2, 0.35, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.75, 0.5, 0.0]
+"values": [0.0, 0.0, 0.75, 0.2, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WhiteLines:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WhiteLines:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-28, -190), Vector2(-28, -190), Vector2(-84, -190)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tqhp6"]
@@ -24,11 +48,11 @@ _data = {
 }
 
 [node name="HolyRecoverEffect" type="Node2D"]
+scale = Vector2(0.95, 0.95)
 
 [node name="WhiteLines" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
-position = Vector2(-28, -175)
-scale = Vector2(0.9, 0.9)
+position = Vector2(-84, -190)
 texture = ExtResource("2_3wlwr")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
