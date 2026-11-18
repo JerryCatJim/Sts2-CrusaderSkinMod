@@ -94,7 +94,7 @@ public static class RitsuLibModConfig
         toggle1.id = "InterruptRecoverSfx";
         toggle1.key = toggle1.id;
         toggle1.label = SimpleLocUtil.Simple("播放新动画时立刻打断收尾动画的音效", "Interrupt Recover Sfx When Playing New Anims");
-        toggle1.description = SimpleLocUtil.Simple("关闭后收尾动画音效不会被打断", "If unchecked, recover Sfx will not be interrupted.");
+        toggle1.description = SimpleLocUtil.Simple("关闭后不会打断收尾动画音效", "If unchecked, recover Sfx will not be interrupted.");
         cardSfxSec.entries.Add(toggle1);
 
         RLMCSection cardVfxSec = new RLMCSection();
@@ -104,19 +104,19 @@ public static class RitsuLibModConfig
         toggle2.id = "PlayCardAnims";
         toggle2.key = toggle2.id;
         toggle2.label = SimpleLocUtil.Simple("播放卡牌动画", "Play Card Anims");
-        toggle2.description = SimpleLocUtil.Simple("关闭后会无法播放卡牌的选择和打出动画,卡牌特效以及音效", "If unchecked, card select/play anims, VFX and SFX wil not play.");
+        toggle2.description = SimpleLocUtil.Simple("关闭后不会播放卡牌的选择和打出动画,卡牌特效以及音效", "If unchecked, card select/play anims, VFX and SFX wil not play.");
         cardVfxSec.entries.Add(toggle2);
         ToggleEntry toggle3 = new ToggleEntry();
         toggle3.id = "PlayCardVfx";
         toggle3.key = toggle3.id;
         toggle3.label = SimpleLocUtil.Simple("播放卡牌特效", "Play Card Vfx");
-        toggle3.description = SimpleLocUtil.Simple("关闭后会无法播放卡牌的打出特效", "If unchecked, card play VFX wil not play.");
+        toggle3.description = SimpleLocUtil.Simple("关闭后不会播放卡牌的打出特效", "If unchecked, card play VFX wil not play.");
         cardVfxSec.entries.Add(toggle3);
         ToggleEntry toggle4 = new ToggleEntry();
         toggle4.id = "PlaySmiteRecoverVfx";
         toggle4.key = toggle4.id;
         toggle4.label = SimpleLocUtil.Simple("播放惩击收尾动画特效", "Play Smite Recover Anim Vfx");
-        toggle4.description = SimpleLocUtil.Simple("关闭后会不会播放惩击收尾动画的特效", "If unchecked, smite recover anim VFX wil not play.");
+        toggle4.description = SimpleLocUtil.Simple("关闭后不会播放惩击收尾动画的特效", "If unchecked, smite recover anim VFX wil not play.");
         cardVfxSec.entries.Add(toggle4);
 
         RLMCSection animSec = new RLMCSection();
