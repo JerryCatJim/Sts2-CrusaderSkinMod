@@ -32,6 +32,9 @@ public static class CrusaderAnimationPatch
             case "Hit":
                 PlayAnim(__instance, "Hit", true);
                 break;
+            case "BlockedHit":
+                PlayAnim(__instance, "BlockedHit", true);
+                break;
 
             case "":
             case null:
@@ -118,25 +121,58 @@ public static class CrusaderAnimationPatch
             {
                 //检测到状态机中不存在的结点(例如使用了属于其他角色卡池的卡牌而触发动画时)则什么也不做
                 AnimationNodeStateMachine rootStateMachine = animTree.TreeRoot as AnimationNodeStateMachine;
-                if (rootStateMachine == null || !rootStateMachine.HasNode(animName)) return;
+                if (rootStateMachine == null || 
+                    (!rootStateMachine.HasNode(animName) && !IsSpecialAnimName(animName))) return;
 
                 if (animName == "Hit")
                 {
-                    //有人反馈连续挨打容易触发T姿势，我没遇到过，还是限制一下吧
-                    if (state_machine.GetCurrentNode() == "Hit" || state_machine.GetCurrentNode() == "HitRecover" || state_machine.GetCurrentNode() == "DeathDoor")
+                    if (!CrusaderSettings.ShowHitAnimIfFullyBlocked)
                     {
-                        if ((state_machine.GetCurrentNode() == "Hit" || state_machine.GetCurrentNode() == "HitRecover")
-                            && CrusaderHelper.IsLowHealth(node.Entity) && CrusaderSettings.UseLowHealthIdle)
+                        //有人反馈连续挨打容易触发T姿势，我没遇到过，还是限制一下吧
+                        if (state_machine.GetCurrentNode() == "Hit" || state_machine.GetCurrentNode() == "HitRecover" || state_machine.GetCurrentNode() == "DeathDoor")
                         {
-                            //被连击击中，第一击是健康血量，后续连击导致低血量时，立刻播放低血量受击动画
-                            state_machine.Start("DeathDoor");
+                            if ((state_machine.GetCurrentNode() == "Hit" || state_machine.GetCurrentNode() == "HitRecover")
+                                && CrusaderHelper.IsLowHealth(node.Entity) && CrusaderSettings.UseLowHealthIdle)
+                            {
+                                //被连击击中，第一击是健康血量，后续连击导致低血量时，立刻播放低血量受击动画
+                                state_machine.Start("DeathDoor");
+                            }
+                            return;
                         }
-                        return;
+                    }
+                    else  //启用完全格挡时受击也播放受伤动画后，Hit链条的动画挪给了"BlockedHit"动画指令，破防后的"Hit"使用HeavyHit链条
+                    {
+                        //有人反馈连续挨打容易触发T姿势，我没遇到过，还是限制一下吧
+                        if (state_machine.GetCurrentNode() == "HeavyHit" || state_machine.GetCurrentNode() == "HeavyHitRecover" || state_machine.GetCurrentNode() == "DeathDoor")
+                        {
+                            if ((state_machine.GetCurrentNode() == "HeavyHit" || state_machine.GetCurrentNode() == "HeavyHitRecover")
+                                && CrusaderHelper.IsLowHealth(node.Entity) && CrusaderSettings.UseLowHealthIdle)
+                            {
+                                //被连击击中，第一击是健康血量，后续连击导致低血量时，立刻播放低血量受击动画
+                                state_machine.Start("DeathDoor");
+                            }
+                            return;
+                        }
                     }
                     //若处于任意Idle时则平滑切换
                     //playImmediately = !CrusaderHelper.IsInAnyIdle(animTree, node.Entity);
-                    animName = CrusaderHelper.IsHeavyHit(node.Entity) ? "HeavyHit" : animName;
+
+                    //启用CrusaderSettings.ShowHitAnimIfFullyBlocked时，受伤动画改为使用"HeavyHit"
+                    animName = (CrusaderHelper.IsHeavyHit(node.Entity) || CrusaderSettings.ShowHitAnimIfFullyBlocked) ? "HeavyHit" : animName;
                     animName = CrusaderHelper.IsLowHealth(node.Entity) && CrusaderSettings.UseLowHealthIdle ? "DeathDoor" : animName;
+                }
+                else if (animName == "BlockedHit" && CrusaderSettings.ShowHitAnimIfFullyBlocked)
+                {
+                    //有人反馈连续挨打容易触发T姿势，我没遇到过，还是限制一下吧
+                    if (state_machine.GetCurrentNode() == "Hit" || state_machine.GetCurrentNode() == "HitRecover" ||
+                        //低血量时人物已经跪下了，无力站起来做格挡动作
+                        (CrusaderHelper.IsLowHealth(node.Entity) && CrusaderSettings.UseLowHealthIdle))
+                    {
+                        return;
+                    }
+                    //animName = "Hit";
+                    state_machine.Start("Hit");
+                    return;
                 }
                 if (playImmediately)
                 {
@@ -147,7 +183,7 @@ public static class CrusaderAnimationPatch
                     state_machine.Travel(animName);
                 }
             }
-            if (bHasChildStateMachine) //打出卡牌动画先传送到CardPlay状态机再在内部传送到子动画
+            else// if (bHasChildStateMachine) //打出卡牌动画先传送到CardPlay状态机再在内部传送到子动画
             {
                 if (animName.Contains("CardSelect/"))
                 {
@@ -224,7 +260,8 @@ public static class CrusaderAnimationPatch
                             Attack_SM.Connect("state_started", stateStartedCallable);
                         }
 
-                        if (CrusaderHelper.ShouldShowBanner(animName) && CrusaderSettings.SwitchBannerImmediately)
+                        if ((CrusaderHelper.ShouldShowBanner(animName) && CrusaderSettings.SwitchBannerImmediately)
+                            || (CrusaderHelper.ShouldShowScripture(animName) && CrusaderSettings.SwitchScriptureImmediately))
                         {
                             state_machine.Start("CardPlay");
                         }
@@ -263,6 +300,16 @@ public static class CrusaderAnimationPatch
             CombatAudioManager.PlayCombatSfx("CardPlay/" + state, state.ToString().Contains("_Recover"), false, VolumeDB, 1); //若为IsTemp，输入的Index不会生效
         }
     });*/
+    private static bool IsSpecialAnimName(string animName)  //有些特殊结点不同审查状态机内是否存在同名结点
+    {
+        switch (animName)
+        {
+            case "BlockedHit":
+                return true;
+            default: 
+                return false;
+        }
+    }
 }
 
 [HarmonyPatch(typeof(HoveredModelTracker), "OnLocalCardSelected")]

@@ -1,4 +1,4 @@
-[gd_resource type="AnimationLibrary" load_steps=103 format=3 uid="uid://bhf8rmbmo7maf"]
+[gd_resource type="AnimationLibrary" load_steps=104 format=3 uid="uid://bhf8rmbmo7maf"]
 
 [ext_resource type="Animation" uid="uid://7gdxlxhr7cvd" path="res://crusader_assets/Animclips/crusader_attack_scroll_action_scrolloutfar_vfx_recover.res" id="3_uuar4"]
 [ext_resource type="Animation" uid="uid://doh8btkadnhh0" path="res://crusader_assets/Animclips/crusader_attack_scroll_action_scrolloutfar_vfx.res" id="4_5bako"]
@@ -15,6 +15,7 @@
 [ext_resource type="Animation" uid="uid://dhm3wukr2r1rc" path="res://crusader_assets/Animclips/crusader_origin_2_attack_mercy_recover.res" id="13_5b1gl"]
 [ext_resource type="Animation" uid="uid://en14lq5p1jxd" path="res://crusader_assets/Animclips/crusader_origin_2_attack_mercy_recover_cutfront.res" id="14_5b1gl"]
 [ext_resource type="Animation" uid="uid://dpc8jet0cm1fo" path="res://crusader_assets/Animclips/crusader_origin_2_attack_mercy_recover_reverse.res" id="15_ihplf"]
+[ext_resource type="Animation" uid="uid://m7n0rnbpcurh" path="res://crusader_assets/Animclips/crusader_attack_leap_recover_v2_moveforward_FixToIdle.res" id="16_gk0mf"]
 
 [sub_resource type="Animation" id="Animation_ud2io"]
 resource_name = "crusader_actout_caster"
@@ -71485,6 +71486,7 @@ _data = {
 &"crusader_attack_leap_recover": SubResource("Animation_v7rnj"),
 &"crusader_attack_leap_recover_v2": SubResource("Animation_guhoc"),
 &"crusader_attack_leap_recover_v2_moveforward": ExtResource("9_xeh8p"),
+&"crusader_attack_leap_recover_v2_moveforward_FixToIdle": ExtResource("16_gk0mf"),
 &"crusader_attack_lowposition_antic": SubResource("Animation_dnhtg"),
 &"crusader_attack_scroll_action": SubResource("Animation_3jwye"),
 &"crusader_attack_scroll_action_scrolloutfar": SubResource("Animation_uxgyl"),

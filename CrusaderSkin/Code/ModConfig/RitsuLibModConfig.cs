@@ -25,7 +25,9 @@ public static class RitsuLibModConfig
         ["PlaySmiteRecoverVfx"] = true,
         ["UseLowHealthIdle"] = true,
 		["SwitchBannerImmediately"] = false,
-		["ShowTeammateCardSelectAnim"] = true,
+        ["SwitchScriptureImmediately"] = false,
+        ["ShowTeammateCardSelectAnim"] = true,
+		["ShowHitAnimIfFullyBlocked"] = false,
         ["CurrentSkin"] = "Default"  //注意，dropdown的selected返回的居然是options的label(value)而不是value(key)
     };
 
@@ -133,11 +135,23 @@ public static class RitsuLibModConfig
         toggle6.description = SimpleLocUtil.Simple("开启后播放旗帜动画时不会混合过渡", "If checked, banner anims will have no mixed transition.");
         animSec.entries.Add(toggle6);
         ToggleEntry toggle7 = new ToggleEntry();
-        toggle7.id = "ShowTeammateCardSelectAnim";
+        toggle7.id = "SwitchScriptureImmediately";
         toggle7.key = toggle7.id;
-        toggle7.label = SimpleLocUtil.Simple("展示队友十字军的选卡动画", "Show Teammate Crusader Card Select Anim");
-        toggle7.description = SimpleLocUtil.Simple("关闭后不会播放队友十字军的选卡动画", "If unchecked, teammate Crusader card select anims will not play.");
+        toggle7.label = SimpleLocUtil.Simple("立即切换卷轴动画", "Switch Scripture Immediately");
+        toggle7.description = SimpleLocUtil.Simple("开启后播放卷轴动画时不会混合过渡", "If checked, scripture anims will have no mixed transition.");
         animSec.entries.Add(toggle7);
+        ToggleEntry toggle8 = new ToggleEntry();
+        toggle8.id = "ShowTeammateCardSelectAnim";
+        toggle8.key = toggle8.id;
+        toggle8.label = SimpleLocUtil.Simple("展示队友十字军的选卡动画", "Show Teammate Crusader Card Select Anim");
+        toggle8.description = SimpleLocUtil.Simple("关闭后不会播放队友十字军的选卡动画", "If unchecked, teammate Crusader card select anims will not play.");
+        animSec.entries.Add(toggle8);
+        ToggleEntry toggle9 = new ToggleEntry();
+        toggle9.id = "ShowHitAnimIfFullyBlocked";
+        toggle9.key = toggle9.id;
+        toggle9.label = SimpleLocUtil.Simple("完全格挡时播放受击动画", "Show Hit Anim If Fully Blocked");
+        toggle9.description = SimpleLocUtil.Simple("开启后完全格挡伤害时也会播放受击动画", "If checked, hit anim will play even if damage is fully blocked.");
+        animSec.entries.Add(toggle9);
 
         mainPage.sections.Add(skinChangeSec);
         mainPage.sections.Add(cardSfxSec);

@@ -6,6 +6,9 @@ using CrusaderSkin.Code.Config;
 using CrusaderSkin.Code.Helper;
 using System.Threading.Tasks;
 using CrusaderSkin.Code.ModConfig;
+using MegaCrit.Sts2.Core.GameActions.Multiplayer;
+using MegaCrit.Sts2.Core.ValueProps;
+using MegaCrit.Sts2.Core.Models;
 
 namespace CrusaderSkin.Code.Singleton;
 
@@ -55,6 +58,15 @@ public class CrusaderCombatSingleton : CustomCrusaderSingletonModel
                     return CreatureCmd.TriggerAnim(creature, "DeathDoor", 0.0f);
                 }
             }
+        }
+        return Task.CompletedTask;
+    }
+    public override Task AfterDamageReceived(PlayerChoiceContext choiceContext, Creature target, DamageResult result, ValueProp props, Creature dealer, CardModel cardSource)
+    {
+        if (CrusaderHelper.IsIronclad(target) && CrusaderSettings.ShowHitAnimIfFullyBlocked && result.WasFullyBlocked
+            && dealer != target)
+        {
+            return CreatureCmd.TriggerAnim(target, "BlockedHit", 0.0f);
         }
         return Task.CompletedTask;
     }
